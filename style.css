@@ -221,7 +221,7 @@ body{
 }
 #product1 .pro-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding-top: 20px;
     flex-wrap: wrap;
 
@@ -460,7 +460,7 @@ body{
 }
 #product1 .pro-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding-top: 20px;
     flex-wrap: wrap;
 
@@ -552,9 +552,9 @@ body{
 }
 #sm-banner {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
-
+    gap: 20px;
 }
 #sm-banner .banner-box {
     display: flex;
@@ -562,12 +562,13 @@ body{
     justify-content: center;
     align-items: flex-start;
     background-image: url("img/banner/b17.png");
-    min-width: 560px;
+    min-width: 605px;
     margin-bottom: 5px;
     height: 50vh;
     background-size: cover;
     background-position: center;
     padding: 30px;
+
 }
 #sm-banner .banner-box2 {
     background-image: url(img/banner/b10.png);
@@ -596,9 +597,10 @@ body{
 }
 #banner3{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     padding: 0 80px;
+    gap: 21px;
 }
 #banner3 .banner-box{
     display: flex;
@@ -606,7 +608,7 @@ body{
     justify-content: center;
     align-items: flex-start;
     background-image: url("img/banner/b7.png");
-    min-width: 30%;
+    min-width: 32%;
     margin-bottom: 10px;
     height: 30vh;
     background-size: cover;
@@ -1679,12 +1681,19 @@ h1 {
   top: 50%;
   transform: translateY(-50%);
   color: #666;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
 }
 #navbar li a.active {
-  color: #088178;
+  color: rgb(76, 148, 4);
   position: relative;
 }
-
+#navbar a.active i {
+    color: rgb(76, 148, 4); /* Your brand's active color */
+    font-weight: 600;
+}
 #navbar li a.active::after {
   content: "";
   position: absolute;
@@ -1693,6 +1702,53 @@ h1 {
   transform: translateX(-50%);
   width: 50%;
   height: 2px;
-  background: #088178;
+  background: rgb(76, 148, 4);
   border-radius: 2px;
+}
+
+@media (max-width: 799px) {
+    #navbar {
+        position: fixed;
+        top: 0;
+        right: -300px; /* Hidden by default */
+        width: 300px;
+        height: 100vh;
+        background: #b7b9c4;
+        box-shadow: 0 40px 60px rgba(0,0,0,0.1);
+        padding: 80px 0 0 10px;
+        transition: 0.3s ease;
+        z-index: 999;
+    }
+
+    #navbar.active {
+        right: 0;
+    }
+
+    #navbar li {
+        margin-bottom: 25px;
+    }
+
+    #navbar #close {
+        display: block;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        color: #222;
+        font-size: 24px;
+    }
+
+    #mobile {
+        display: flex;
+        align-items: center;
+    }
+
+    #mobile i {
+        color: #1a1a1a;
+        font-size: 24px;
+        padding-left: 20px;
+    }
+
+    #lg-bag {
+        display: none;
+    }
 }

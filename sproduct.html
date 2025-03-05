@@ -19,7 +19,7 @@
       <div>
         <ul id="navbar">
           <li><a href="index.html">Home</a></li>
-          <li><a href="shop.html">Shop</a></li>
+          <li><a href="shop.html" id="shop-link">Shop</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="contact.html">Contact</a></li>
@@ -38,6 +38,20 @@
       </div>
 
       <script>
+        // Function to add 'active' class to the current page link
+        function setActiveLink() {
+          const currentPage = window.location.pathname; // Get the current page path
+          const shopLink = document.getElementById("shop-link");
+
+          // Check if the current page is shop.html or sproduct.html
+          if (
+            currentPage.includes("shop.html") ||
+            currentPage.includes("sproduct.html")
+          ) {
+            shopLink.classList.add("active");
+          }
+        }
+
         // Check authentication status on page load
         document.addEventListener("DOMContentLoaded", () => {
           const authLink = document.getElementById("auth-link");
@@ -46,10 +60,10 @@
           if (token) {
             // User is logged in - show logout
             authLink.innerHTML = `
-                    <a href="#" id="logout-link">
-                        <i class="fas fa-sign-out-alt"></i> Logout
-                    </a>
-                `;
+          <a href="#" id="logout-link">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </a>
+        `;
 
             // Add logout functionality
             document
@@ -62,15 +76,16 @@
           } else {
             // User is not logged in - show login
             authLink.innerHTML = `
-                    <a href="login.html" class="${
-                      window.location.pathname.includes("login.html")
-                        ? "active"
-                        : ""
-                    }">
-                        <i class="fas fa-sign-in-alt"></i> Login
-                    </a>
-                `;
+          <a href="login.html" class="${
+            window.location.pathname.includes("login.html") ? "active" : ""
+          }">
+            <i class="fas fa-sign-in-alt"></i> Login
+          </a>
+        `;
           }
+
+          // Set the active link for the current page
+          setActiveLink();
         });
       </script>
     </section>

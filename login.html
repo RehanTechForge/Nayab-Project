@@ -39,6 +39,21 @@
       <script>
         // Check authentication status on page load
         document.addEventListener("DOMContentLoaded", () => {
+          const bar = document.getElementById("bar");
+          const navbar = document.getElementById("navbar");
+          const close = document.getElementById("close");
+
+          // Toggle mobile navigation
+          bar.addEventListener("click", () => {
+            navbar.classList.add("active");
+          });
+
+          // Close mobile navigation
+          close.addEventListener("click", () => {
+            navbar.classList.remove("active");
+          });
+        });
+        document.addEventListener("DOMContentLoaded", () => {
           const authLink = document.getElementById("auth-link");
           const token = localStorage.getItem("token");
 
@@ -125,57 +140,63 @@
             alert(data.message || "Login failed");
           }
         });
-        // Navigation Active Class Handler
-function setActiveNav() {
-  const currentPath = window.location.pathname.split('/').pop();
-  const navLinks = document.querySelectorAll('#navbar a');
+      // Navigation Active Class Handler
+      function setActiveNav() {
+        const currentPath = window.location.pathname.split("/").pop();
+        const navLinks = document.querySelectorAll("#navbar a");
 
-  navLinks.forEach(link => {
-    const linkPath = link.getAttribute('href').split('/').pop();
-    if (currentPath === linkPath) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
-  });
-}
+        navLinks.forEach((link) => {
+          const linkPath = link.getAttribute("href").split("/").pop();
+          if (currentPath === linkPath) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      }
 
-// Updated Authentication Checker
-document.addEventListener("DOMContentLoaded", () => {
-  const authLink = document.getElementById("auth-link");
-  const token = localStorage.getItem("token");
+      // Updated Authentication Checker
+      document.addEventListener("DOMContentLoaded", () => {
+        const authLink = document.getElementById("auth-link");
+        const token = localStorage.getItem("token");
 
-  // Set active class for all navigation links
-  setActiveNav();
+        // Set active class for all navigation links
+        setActiveNav();
 
-  if (token) {
-    authLink.innerHTML = `
+        if (token) {
+          authLink.innerHTML = `
       <a href="#" id="logout-link">
           <i class="fas fa-sign-out-alt"></i> Logout
       </a>
     `;
 
-    document.getElementById("logout-link")?.addEventListener("click", (e) => {
-      e.preventDefault();
-      localStorage.removeItem("token");
-      window.location.href = "index.html";
-    });
-  } else {
-    authLink.innerHTML = `
-      <a href="login.html" class="${window.location.pathname.includes("login.html") ? "active" : ""}">
+          document
+            .getElementById("logout-link")
+            ?.addEventListener("click", (e) => {
+              e.preventDefault();
+              localStorage.removeItem("token");
+              window.location.href = "index.html";
+            });
+        } else {
+          authLink.innerHTML = `
+      <a href="login.html" class="${
+        window.location.pathname.includes("login.html") ? "active" : ""
+      }">
           <i class="fas fa-sign-in-alt"></i> Login
       </a>
     `;
-  }
-});
+        }
+      });
 
-// Add event listener for navigation clicks
-document.querySelectorAll('#navbar a').forEach(link => {
-  link.addEventListener('click', function() {
-    document.querySelectorAll('#navbar a').forEach(l => l.classList.remove('active'));
-    this.classList.add('active');
-  });
-});
+      // Add event listener for navigation clicks
+      document.querySelectorAll("#navbar a").forEach((link) => {
+        link.addEventListener("click", function () {
+          document
+            .querySelectorAll("#navbar a")
+            .forEach((l) => l.classList.remove("active"));
+          this.classList.add("active");
+        });
+      });
     </script>
   </body>
 </html>

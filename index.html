@@ -40,6 +40,21 @@
       <script>
         // Check authentication status on page load
         document.addEventListener("DOMContentLoaded", () => {
+          const bar = document.getElementById("bar");
+          const navbar = document.getElementById("navbar");
+          const close = document.getElementById("close");
+
+          // Toggle mobile navigation
+          bar.addEventListener("click", () => {
+            navbar.classList.add("active");
+          });
+
+          // Close mobile navigation
+          close.addEventListener("click", () => {
+            navbar.classList.remove("active");
+          });
+        });
+        document.addEventListener("DOMContentLoaded", () => {
           const authLink = document.getElementById("auth-link");
           const token = localStorage.getItem("token");
 
