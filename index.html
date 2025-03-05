@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nayab - Be Unique!</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script src="./js/products.js"></script>
+  </head>
+
+  <body>
+    <section id="header">
+      <a href="#"><img src="img/logo.png" class="logo" alt="img" /></a>
+      <div>
+        <ul id="navbar">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li id="auth-link">
+            <!-- Dynamic login/logout will be inserted here by JavaScript -->
+          </li>
+          <li id="lg-bag">
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+          </li>
+          <a href="#" id="close"><i class="fa-solid fa-circle-xmark"></i></a>
+        </ul>
+      </div>
+      <div id="mobile">
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        <i id="bar" class="fa-solid fa-outdent"></i>
+      </div>
+
+      <script>
+        // Check authentication status on page load
+        document.addEventListener("DOMContentLoaded", () => {
+          const authLink = document.getElementById("auth-link");
+          const token = localStorage.getItem("token");
+
+          if (token) {
+            // User is logged in - show logout
+            authLink.innerHTML = `
+                    <a href="#" id="logout-link">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                `;
+
+            // Add logout functionality
+            document
+              .getElementById("logout-link")
+              .addEventListener("click", (e) => {
+                e.preventDefault();
+                localStorage.removeItem("token");
+                window.location.href = "index.html";
+              });
+          } else {
+            // User is not logged in - show login
+            authLink.innerHTML = `
+                    <a href="login.html" class="${
+                      window.location.pathname.includes("login.html")
+                        ? "active"
+                        : ""
+                    }">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                `;
+          }
+        });
+      </script>
+    </section>
+
+    <section id="hero">
+      <h4>Look different - be Unique</h4>
+      <h2>Best value deals</h2>
+      <h1>On all pieces</h1>
+      <p>Save more with discount codes & upto 60% off!</p>
+      <button>Shop Now</button>
+    </section>
+
+    <section id="feature" class="section-p1">
+      <div class="fe-box">
+        <img src="img/features/f1.png" alt="" />
+        <h6>24/7 Support</h6>
+      </div>
+      <div class="fe-box">
+        <img src="img/features/f2.png" alt="" />
+        <h6>Free Shipping</h6>
+      </div>
+      <div class="fe-box">
+        <img src="img/features/f3.png" alt="" />
+        <h6>Save Money</h6>
+      </div>
+      <div class="fe-box">
+        <img src="img/features/f4.png" alt="" />
+        <h6>Online Order</h6>
+      </div>
+      <div class="fe-box">
+        <img src="img/features/f5.png" alt="" />
+        <h6>Promotion</h6>
+      </div>
+      <div class="fe-box">
+        <img src="img/features/f6.png" alt="" />
+        <h6>Happy Sell</h6>
+      </div>
+    </section>
+
+    <section id="product1" class="section-p1 featured-products">
+      <h2>Featured Products</h2>
+      <p>Summer Collection New Modern Designs</p>
+      <div class="pro-container" id="pro-container"></div>
+    </section>
+
+    <section id="banner" class="section-m1">
+      <h4>Repair Services</h4>
+      <h2>Up to <span>70% off</span> - all T-shirts & Products!</h2>
+      <button class="normal">Explore More</button>
+    </section>
+
+    <section id="product1" class="section-p1 new-arrivals">
+      <h2>New Arrivals</h2>
+      <p>Summer Collection New Modern Designs</p>
+      <div class="pro-container" id="pro-container"></div>
+    </section>
+
+    <section id="sm-banner" class="section-p1">
+      <div class="banner-box">
+        <h4>Crazy Deals</h4>
+        <h2>buy one get one free!</h2>
+        <span>The best evergreen T-shirts are on sale at Nayab</span>
+        <button class="white">Learn More</button>
+      </div>
+      <div class="banner-box banner-box2">
+        <h4>Spring/Summer</h4>
+        <h2>Upcoming Season</h2>
+        <span>The best evergreen T-shirts are on sale at Nayab</span>
+        <button class="white">Collection</button>
+      </div>
+    </section>
+
+    <section id="banner3">
+      <div class="banner-box">
+        <h2>SEASONAL SALE</h2>
+        <h3>Winter Collection - 50% off</h3>
+      </div>
+      <div class="banner-box banner-box2">
+        <h2>New Topwear Collection</h2>
+        <h3>Spring/Summer 2025</h3>
+      </div>
+      <div class="banner-box banner-box3">
+        <h2>Printed T-Shirts</h2>
+        <h3>Now Available!</h3>
+      </div>
+    </section>
+
+    <section id="newsletter" class="section-p1 section-m1">
+      <div class="newstext">
+        <h4>Sign up for the Newsletter</h4>
+        <p>
+          Get e-mail updates about our latest products and
+          <span>special offers.</span>
+        </p>
+      </div>
+      <div class="form">
+        <input type="text" placeholder="Your email adress" />
+        <button class="normal">Sign Up</button>
+      </div>
+    </section>
+
+    <footer class="section-p1">
+      <div class="footer-content">
+        <div class="col">
+          <img src="img/logo.png" class="logo" alt="Nayab Clothing Logo" />
+          <h4>Contact</h4>
+          <p><strong>Address:</strong> Karachi, Sindh</p>
+          <p><strong>Phone:</strong> +92 300 9211627</p>
+          <p><strong>Hours:</strong> 10:00 - 22:00</p>
+          <div class="follow">
+            <h4>Follow us</h4>
+            <div class="icon">
+              <i class="fa-brands fa-facebook"></i>
+              <i class="fa-brands fa-instagram"></i>
+              <i class="fa-brands fa-x-twitter"></i>
+              <i class="fa-brands fa-pinterest"></i>
+              <i class="fa-brands fa-youtube"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <h4>About</h4>
+          <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Delivery information</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+        </div>
+        <div class="col">
+          <h4>My Account</h4>
+          <ul>
+            <li><a href="#">Sign In</a></li>
+            <li><a href="#">View Cart</a></li>
+            <li><a href="#">My Wishlist</a></li>
+            <li><a href="#">Track My Order</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+        </div>
+        <div class="col install">
+          <h4>Install App</h4>
+          <p>From App Store or Google Play</p>
+          <div class="row">
+            <img src="img/pay/app.png" class="app-store" alt="App Store" />
+            <img src="img/pay/play.png" class="google-play" alt="Google Play" />
+          </div>
+          <p>Secured Payment Gateways</p>
+          <img
+            src="img/pay/pay.png"
+            class="payment-methods"
+            alt="Payment Methods"
+          />
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025, Nayab Clothing - Official Website</p>
+      </div>
+    </footer>
+
+    <script src="./js/productRenderer.js"></script>
+
+    <script src="./js/cartManager.js"></script>
+    <!-- <script>
+      console.log("PRODUCTS", products);
+      document.addEventListener("DOMContentLoaded", () => {
+        // Debug logging to ensure products are available
+        console.log("All Products:", products);
+
+        // Ensure the container exists before rendering
+        const container = document.getElementById("pro-container");
+        if (!container) {
+          console.error("Product container not found!");
+          return;
+        }
+
+        // Fallback rendering method if ProductRenderer fails
+        if (
+          typeof ProductRenderer === "undefined" ||
+          !ProductRenderer.renderProducts
+        ) {
+          console.warn("ProductRenderer not found. Using manual rendering.");
+          container.innerHTML = products
+            .map(
+              (product) => `
+      <div class="pro" onclick="window.location.href='sproduct.html?id=${
+        product.id
+      }'">
+        <img src="${
+          product.mainImage || product.image || "img/products/default.jpg"
+        }" alt="${product.name}" />
+        <div class="des">
+          <span>${product.brand || "Nayab"}</span>
+          <h5>${product.name}</h5>
+          <div class="star">
+            ${'<i class="fa-solid fa-star"></i>'.repeat(
+              Math.floor(product.rating || 5)
+            )}
+          </div>
+          <h4>Pkr ${product.price.toLocaleString()}</h4>
+        </div>
+        <a href="#" class="cart-icon" data-id="${product.id}">
+          <i class="fa-solid fa-cart-shopping cart"></i>
+        </a>
+      </div>
+    `
+            )
+            .join("");
+        } else {
+          // Use ProductRenderer if available
+          ProductRenderer.renderProducts("pro-container", products);
+        }
+      });
+    </script> -->
+
+    <script>
+      // Updated script to filter and render products based on featured and newArrival properties
+      document.addEventListener("DOMContentLoaded", () => {
+        // Debug logging to ensure products are available
+        console.log("All Products:", products);
+
+        // Function to render products in a specific container
+        function renderProductsInContainer(containerId, filterFn) {
+          const container = document.getElementById(containerId);
+          if (!container) {
+            console.error(`Product container ${containerId} not found!`);
+            return;
+          }
+
+          // Filter products based on the provided filter function
+          const filteredProducts = products.filter(filterFn);
+
+          // Render filtered products
+          container.innerHTML = filteredProducts
+            .map(
+              (product) => `
+          <div class="pro" onclick="window.location.href='sproduct.html?id=${
+            product.id
+          }'">
+            <img src="${
+              product.mainImage || product.image || "img/products/default.jpg"
+            }" alt="${product.name}" />
+            <div class="des">
+              <span>${product.brand || "Nayab"}</span>
+              <h5>${product.name}</h5>
+              <div class="star">
+                ${'<i class="fa-solid fa-star"></i>'.repeat(
+                  Math.floor(product.rating || 5)
+                )}
+              </div>
+              <h4>Pkr ${product.price.toLocaleString()}</h4>
+            </div>
+            <a href="#" class="cart-icon" data-id="${product.id}">
+              <i class="fa-solid fa-cart-shopping cart"></i>
+            </a>
+          </div>
+        `
+            )
+            .join("");
+        }
+
+        // Render Featured Products
+        renderProductsInContainer(
+          "pro-container",
+          (product) => product.featured === true
+        );
+
+        // Render New Arrivals
+        const newArrivalsContainer = document.querySelectorAll(
+          "#product1.new-arrivals .pro-container"
+        )[0];
+        if (newArrivalsContainer) {
+          newArrivalsContainer.id = "new-arrivals-container";
+          renderProductsInContainer(
+            "new-arrivals-container",
+            (product) => product.newArrival === true
+          );
+        }
+      });
+      // Navigation Active Class Handler
+      function setActiveNav() {
+        const currentPath = window.location.pathname.split("/").pop();
+        const navLinks = document.querySelectorAll("#navbar a");
+
+        navLinks.forEach((link) => {
+          const linkPath = link.getAttribute("href").split("/").pop();
+          if (currentPath === linkPath) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      }
+
+      // Updated Authentication Checker
+      document.addEventListener("DOMContentLoaded", () => {
+        const authLink = document.getElementById("auth-link");
+        const token = localStorage.getItem("token");
+
+        // Set active class for all navigation links
+        setActiveNav();
+
+        if (token) {
+          authLink.innerHTML = `
+      <a href="#" id="logout-link">
+          <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    `;
+
+          document
+            .getElementById("logout-link")
+            ?.addEventListener("click", (e) => {
+              e.preventDefault();
+              localStorage.removeItem("token");
+              window.location.href = "index.html";
+            });
+        } else {
+          authLink.innerHTML = `
+      <a href="login.html" class="${
+        window.location.pathname.includes("login.html") ? "active" : ""
+      }">
+          <i class="fas fa-sign-in-alt"></i> Login
+      </a>
+    `;
+        }
+      });
+
+      // Add event listener for navigation clicks
+      document.querySelectorAll("#navbar a").forEach((link) => {
+        link.addEventListener("click", function () {
+          document
+            .querySelectorAll("#navbar a")
+            .forEach((l) => l.classList.remove("active"));
+          this.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>

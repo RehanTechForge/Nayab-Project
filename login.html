@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nayab - Be Unique!</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <section id="header">
+      <a href="#"><img src="img/logo.png" class="logo" alt="img" /></a>
+      <div>
+        <ul id="navbar">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li id="auth-link">
+            <!-- Dynamic login/logout will be inserted here by JavaScript -->
+          </li>
+          <li id="lg-bag">
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+          </li>
+          <a href="#" id="close"><i class="fa-solid fa-circle-xmark"></i></a>
+        </ul>
+      </div>
+      <div id="mobile">
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        <i id="bar" class="fa-solid fa-outdent"></i>
+      </div>
+
+      <script>
+        // Check authentication status on page load
+        document.addEventListener("DOMContentLoaded", () => {
+          const authLink = document.getElementById("auth-link");
+          const token = localStorage.getItem("token");
+
+          if (token) {
+            // User is logged in - show logout
+            authLink.innerHTML = `
+                    <a href="#" id="logout-link">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                `;
+
+            // Add logout functionality
+            document
+              .getElementById("logout-link")
+              .addEventListener("click", (e) => {
+                e.preventDefault();
+                localStorage.removeItem("token");
+                window.location.href = "index.html";
+              });
+          } else {
+            // User is not logged in - show login
+            authLink.innerHTML = `
+                    <a href="login.html" class="${
+                      window.location.pathname.includes("login.html")
+                        ? "active"
+                        : ""
+                    }">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                `;
+          }
+        });
+      </script>
+    </section>
+
+    <section id="login">
+      <div class="login-container">
+        <div class="login-form">
+          <h1>Login</h1>
+          <form id="login-form">
+            <div class="input-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" required />
+            </div>
+            <div class="input-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" required />
+            </div>
+            <button type="submit" class="btn-login normal">Login</button>
+          </form>
+          <div class="links">
+            <p>Don't have an account? <a href="register.html">Sign Up</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const response = await fetch(
+            `http://localhost:8000/api/v1/users/login`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value,
+              }),
+            }
+          );
+
+          const data = await response.json();
+
+          if (response.ok) {
+            localStorage.setItem("token", data.token);
+            window.location.href = "/index.html";
+          } else {
+            alert(data.message || "Login failed");
+          }
+        });
+        // Navigation Active Class Handler
+function setActiveNav() {
+  const currentPath = window.location.pathname.split('/').pop();
+  const navLinks = document.querySelectorAll('#navbar a');
+
+  navLinks.forEach(link => {
+    const linkPath = link.getAttribute('href').split('/').pop();
+    if (currentPath === linkPath) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+}
+
+// Updated Authentication Checker
+document.addEventListener("DOMContentLoaded", () => {
+  const authLink = document.getElementById("auth-link");
+  const token = localStorage.getItem("token");
+
+  // Set active class for all navigation links
+  setActiveNav();
+
+  if (token) {
+    authLink.innerHTML = `
+      <a href="#" id="logout-link">
+          <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    `;
+
+    document.getElementById("logout-link")?.addEventListener("click", (e) => {
+      e.preventDefault();
+      localStorage.removeItem("token");
+      window.location.href = "index.html";
+    });
+  } else {
+    authLink.innerHTML = `
+      <a href="login.html" class="${window.location.pathname.includes("login.html") ? "active" : ""}">
+          <i class="fas fa-sign-in-alt"></i> Login
+      </a>
+    `;
+  }
+});
+
+// Add event listener for navigation clicks
+document.querySelectorAll('#navbar a').forEach(link => {
+  link.addEventListener('click', function() {
+    document.querySelectorAll('#navbar a').forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+    </script>
+  </body>
+</html>

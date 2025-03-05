@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nayab - Be Unique!</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script src="./js/products.js"></script>
+  </head>
+
+  <body>
+    <section id="header">
+      <a href="#"><img src="img/logo.png" class="logo" alt="img" /></a>
+      <div>
+        <ul id="navbar">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li id="auth-link">
+            <!-- Dynamic login/logout will be inserted here by JavaScript -->
+          </li>
+          <li id="lg-bag">
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+          </li>
+          <a href="#" id="close"><i class="fa-solid fa-circle-xmark"></i></a>
+        </ul>
+      </div>
+      <div id="mobile">
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        <i id="bar" class="fa-solid fa-outdent"></i>
+      </div>
+
+      <script>
+        // Check authentication status on page load
+        document.addEventListener("DOMContentLoaded", () => {
+          const authLink = document.getElementById("auth-link");
+          const token = localStorage.getItem("token");
+
+          if (token) {
+            // User is logged in - show logout
+            authLink.innerHTML = `
+                    <a href="#" id="logout-link">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                `;
+
+            // Add logout functionality
+            document
+              .getElementById("logout-link")
+              .addEventListener("click", (e) => {
+                e.preventDefault();
+                localStorage.removeItem("token");
+                window.location.href = "index.html";
+              });
+          } else {
+            // User is not logged in - show login
+            authLink.innerHTML = `
+                    <a href="login.html" class="${
+                      window.location.pathname.includes("login.html")
+                        ? "active"
+                        : ""
+                    }">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                `;
+          }
+        });
+      </script>
+    </section>
+
+    <section id="prodetails" class="section-p1">
+      <div class="single-pro-image">
+        <img src="./img/products/1.jpeg" width="100%" id="MainImg" alt="img" />
+
+        <div class="small-img-group">
+          <div class="small-img-col">
+            <img
+              src="./img/products/1.jpeg"
+              width="100%"
+              class="small-img"
+              alt="img"
+            />
+          </div>
+          <div class="small-img-col">
+            <img
+              src="./img/products/1.jpeg"
+              width="100%"
+              class="small-img"
+              alt="img"
+            />
+          </div>
+          <div class="small-img-col">
+            <img
+              src="./img/products/1.jpeg"
+              width="100%"
+              class="small-img"
+              alt="img"
+            />
+          </div>
+          <div class="small-img-col">
+            <img
+              src="./img/products/1.jpeg"
+              width="100%"
+              class="small-img"
+              alt="img"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="single-pro-details">
+        <h6>Home / T-Shirt</h6>
+        <h4>Unisex Fashion T Shirt</h4>
+        <h2>Pkr 1200</h2>
+        <select>
+          <option>Select Size</option>
+          <option>XL</option>
+          <option>XXL</option>
+          <option>Small</option>
+          <option>XS</option>
+          <option>Medium</option>
+          <option>Large</option>
+        </select>
+        <input type="number" value="1" />
+        <button class="normal">Add to Cart</button>
+        <h4>Product Details</h4>
+        <span
+          >Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, itaque,
+          corporis sapiente autem cumque nulla nisi tempora veritatis animi
+          similique doloremque. Natus debitis ipsam consequatur deleniti ipsum
+          officia odio explicabo!</span
+        >
+      </div>
+    </section>
+
+    <section id="product1" class="section-p1">
+      <h2>Featured Procucts</h2>
+      <p>Summer Collection New Modern Designs</p>
+      <div class="pro-container">
+        <div class="pro" onclick="window.location.href='sproduct.html'">
+          <img src="img/products/f1.png" alt="f1" />
+          <div class="des">
+            <span>Nayab</span>
+            <h5>Splash print T-shirt</h5>
+            <div class="star">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <h4>Pkr 1200</h4>
+          </div>
+          <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
+        </div>
+        <div class="pro" onclick="window.location.href='sproduct.html'">
+          <img src="img/products/f1.png" alt="f1" />
+          <div class="des">
+            <span>Nayab</span>
+            <h5>Splash print T-shirt</h5>
+            <div class="star">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <h4>Pkr 1200</h4>
+          </div>
+          <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
+        </div>
+        <div class="pro" onclick="window.location.href='sproduct.html'">
+          <img src="img/products/f1.png" alt="f1" />
+          <div class="des">
+            <span>Nayab</span>
+            <h5>Splash print T-shirt</h5>
+            <div class="star">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <h4>Pkr 1200</h4>
+          </div>
+          <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
+        </div>
+        <div class="pro" onclick="window.location.href='sproduct.html'">
+          <img src="img/products/f1.png" alt="f1" />
+          <div class="des">
+            <span>Nayab</span>
+            <h5>Splash print T-shirt</h5>
+            <div class="star">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <h4>Pkr 1200</h4>
+          </div>
+          <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <section id="newsletter" class="section-p1 section-m1">
+      <div class="newstext">
+        <h4>Sign up for the Newsletter</h4>
+        <p>
+          Get e-mail updates about our latest products and
+          <span>special offers.</span>
+        </p>
+      </div>
+      <div class="form">
+        <input type="text" placeholder="Your email adress" />
+        <button class="normal">Sign Up</button>
+      </div>
+    </section>
+
+    <footer class="section-p1">
+      <div class="footer-content">
+        <div class="col">
+          <img src="img/logo.png" class="logo" alt="Nayab Clothing Logo" />
+          <h4>Contact</h4>
+          <p><strong>Address:</strong> Karachi, Sindh</p>
+          <p><strong>Phone:</strong> +92 300 9211627</p>
+          <p><strong>Hours:</strong> 10:00 - 22:00</p>
+          <div class="follow">
+            <h4>Follow us</h4>
+            <div class="icon">
+              <i class="fa-brands fa-facebook"></i>
+              <i class="fa-brands fa-instagram"></i>
+              <i class="fa-brands fa-x-twitter"></i>
+              <i class="fa-brands fa-pinterest"></i>
+              <i class="fa-brands fa-youtube"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <h4>About</h4>
+          <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Delivery information</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+        </div>
+        <div class="col">
+          <h4>My Account</h4>
+          <ul>
+            <li><a href="#">Sign In</a></li>
+            <li><a href="#">View Cart</a></li>
+            <li><a href="#">My Wishlist</a></li>
+            <li><a href="#">Track My Order</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+        </div>
+        <div class="col install">
+          <h4>Install App</h4>
+          <p>From App Store or Google Play</p>
+          <div class="row">
+            <img src="img/pay/app.png" class="app-store" alt="App Store" />
+            <img src="img/pay/play.png" class="google-play" alt="Google Play" />
+          </div>
+          <p>Secured Payment Gateways</p>
+          <img
+            src="img/pay/pay.png"
+            class="payment-methods"
+            alt="Payment Methods"
+          />
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025, Nayab Clothing - Official Website</p>
+      </div>
+    </footer>
+    <script src="js/cartManager.js"></script>
+    <script>
+      // Function to render featured products
+      function renderFeaturedProducts() {
+        const proContainer = document.querySelector(".pro-container");
+
+        // Check if products are defined and the container exists
+        if (!products || !proContainer) {
+          console.error("Products not found or container missing");
+          return;
+        }
+
+        // Filter only featured products
+        const featuredProducts = products.filter(
+          (product) => product.featured === true
+        );
+
+        // Clear existing products
+        proContainer.innerHTML = "";
+
+        // Render featured products
+        featuredProducts.forEach((product) => {
+          const productElement = document.createElement("div");
+          productElement.className = "pro";
+          productElement.setAttribute(
+            "onclick",
+            `window.location.href='sproduct.html?id=${product.id}'`
+          );
+
+          productElement.innerHTML = `
+      <img src="${
+        product.mainImage || product.image || "img/products/f1.png"
+      }" alt="${product.name}" />
+      <div class="des">
+        <span>${product.brand || "Nayab"}</span>
+        <h5>${product.name}</h5>
+        <div class="star">
+          ${generateStarRating(product.rating || 5)}
+        </div>
+        <h4>Pkr ${product.price.toLocaleString()}</h4>
+      </div>
+      <a href="#" class="cart-icon" data-id="${product.id}">
+        <i class="fa-solid fa-cart-shopping cart"></i>
+      </a>
+    `;
+
+          proContainer.appendChild(productElement);
+        });
+
+        // If no featured products, show a message
+        if (featuredProducts.length === 0) {
+          proContainer.innerHTML = "<p>No featured products available.</p>";
+        }
+      }
+
+      // Helper function to generate star ratings
+      function generateStarRating(rating) {
+        return Array(Math.floor(rating))
+          .fill('<i class="fa-solid fa-star"></i>')
+          .join("");
+      }
+
+      // Render products when DOM is fully loaded
+      document.addEventListener("DOMContentLoaded", renderFeaturedProducts);
+    </script>
+    <!-- <script src="js/script.js"></script> -->
+  </body>
+</html>

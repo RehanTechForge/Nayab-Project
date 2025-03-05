@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nayab - Be Unique!</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script src="./js/products.js"></script>
+  </head>
+
+  <body>
+    <section id="header">
+      <a href="#"><img src="img/logo.png" class="logo" alt="img" /></a>
+      <div>
+        <ul id="navbar">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li id="auth-link">
+            <!-- Dynamic login/logout will be inserted here by JavaScript -->
+          </li>
+          <li id="lg-bag">
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+          </li>
+          <a href="#" id="close"><i class="fa-solid fa-circle-xmark"></i></a>
+        </ul>
+      </div>
+      <div id="mobile">
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        <i id="bar" class="fa-solid fa-outdent"></i>
+      </div>
+
+      <script>
+        // Check authentication status on page load
+        document.addEventListener("DOMContentLoaded", () => {
+          const authLink = document.getElementById("auth-link");
+          const token = localStorage.getItem("token");
+
+          if (token) {
+            // User is logged in - show logout
+            authLink.innerHTML = `
+                    <a href="#" id="logout-link">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                `;
+
+            // Add logout functionality
+            document
+              .getElementById("logout-link")
+              .addEventListener("click", (e) => {
+                e.preventDefault();
+                localStorage.removeItem("token");
+                window.location.href = "index.html";
+              });
+          } else {
+            // User is not logged in - show login
+            authLink.innerHTML = `
+                    <a href="login.html" class="${
+                      window.location.pathname.includes("login.html")
+                        ? "active"
+                        : ""
+                    }">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                `;
+          }
+        });
+      </script>
+    </section>
+
+    <section id="page-header" class="about-header">
+      <h2>#cart</h2>
+      <p>buy at your own convenience</p>
+    </section>
+
+    <section id="cart" class="section-p1">
+      <table width="100%">
+        <thead>
+          <tr>
+            <td>Remove</td>
+            <td>Image</td>
+            <td>Product</td>
+            <td>Price</td>
+            <td>Quantity</td>
+            <td>Subtotal</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a href="#"><i class="fa-solid fa-circle-xmark"></i></a>
+            </td>
+            <td><img src="img/products/f1.jpg" alt="img" /></td>
+            <td></td>
+            <td></td>
+            <td><input type="number" /></td>
+            <td></td>
+          </tr></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="cart-add" class="section-p1">
+      <div id="coupon">
+        <h3>Apply Discount Code</h3>
+        <div>
+          <input type="text" placeholder="enter your code" />
+          <button class="normal">Apply</button>
+        </div>
+      </div>
+
+      <div id="subtotal">
+        <h3>Cart Totals</h3>
+        <table>
+          <tr>
+            <td>Cart Subtotal</td>
+            <td>Pkr 1200</td>
+          </tr>
+          <tr>
+            <td>Shipping</td>
+            <td>Free</td>
+          </tr>
+          <tr>
+            <td><strong>Total</strong></td>
+            <td><strong id="totals">Pkr 1200</strong></td>
+          </tr>
+        </table>
+        <button class="normal">Proceed to Check Out</button>
+      </div>
+    </section>
+
+    <footer class="section-p1">
+      <div class="footer-content">
+        <div class="col">
+          <img src="img/logo.png" class="logo" alt="Nayab Clothing Logo" />
+          <h4>Contact</h4>
+          <p><strong>Address:</strong> Karachi, Sindh</p>
+          <p><strong>Phone:</strong> +92 300 9211627</p>
+          <p><strong>Hours:</strong> 10:00 - 22:00</p>
+          <div class="follow">
+            <h4>Follow us</h4>
+            <div class="icon">
+              <i class="fa-brands fa-facebook"></i>
+              <i class="fa-brands fa-instagram"></i>
+              <i class="fa-brands fa-x-twitter"></i>
+              <i class="fa-brands fa-pinterest"></i>
+              <i class="fa-brands fa-youtube"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <h4>About</h4>
+          <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Delivery information</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+        </div>
+        <div class="col">
+          <h4>My Account</h4>
+          <ul>
+            <li><a href="#">Sign In</a></li>
+            <li><a href="#">View Cart</a></li>
+            <li><a href="#">My Wishlist</a></li>
+            <li><a href="#">Track My Order</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+        </div>
+        <div class="col install">
+          <h4>Install App</h4>
+          <p>From App Store or Google Play</p>
+          <div class="row">
+            <img src="img/pay/app.png" class="app-store" alt="App Store" />
+            <img src="img/pay/play.png" class="google-play" alt="Google Play" />
+          </div>
+          <p>Secured Payment Gateways</p>
+          <img
+            src="img/pay/pay.png"
+            class="payment-methods"
+            alt="Payment Methods"
+          />
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025, Nayab Clothing - Official Website</p>
+      </div>
+    </footer>
+
+    <!-- <script src="./js/script.js"></script> -->
+    <script src="./js/cartManager.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+  const cartTableBody = document.querySelector("#cart tbody");
+  const subtotalElement = document.querySelector("#subtotal td:last-child");
+  const totals = document.getElementById("totals");
+
+  // Function to populate cart
+  function populateCart() {
+    // Clear existing cart rows
+    if (cartTableBody) {
+      cartTableBody.innerHTML = "";
+
+      // Get cart items
+      const cartItems = CartManager.getCartItems();
+
+      console.log("cartItems",cartItems);
+
+      // If cart is empty
+      if (cartItems.length === 0) {
+        cartTableBody.innerHTML = `
+          <tr>
+            <td colspan="6" style="text-align: center;">Your cart is empty</td>
+          </tr>
+        `;
+        subtotalElement.textContent = "Pkr 0";
+        totals.textContent = "Pkr 0";
+        return;
+      }
+
+      // Populate cart items
+      cartItems.forEach((item) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>
+            <a href="#" class="remove-item" data-id="${item.id}">
+              <i class="fa-solid fa-circle-xmark"></i>
+            </a>
+          </td>
+          <td><img src="${item.product.mainImage}" alt="${item.product.name}" /></td>
+          <td>${item.product.name}</td>
+          <td>Pkr ${item.product.price}</td>
+          <td>
+            <input 
+              type="number" 
+              value="${item.quantity}" 
+              min="1" 
+              class="quantity-input" 
+              data-id="${item.id}"
+            />
+          </td>
+          <td>Pkr ${item.product.price * item.quantity}</td>
+        `;
+        cartTableBody.appendChild(row);
+      });
+
+      // Update total
+      const total = CartManager.getCartTotal();
+      subtotalElement.textContent = `Pkr ${total}`;
+      totals.textContent = `Pkr ${total}`;
+
+      // Add event listeners
+      addCartEventListeners();
+    }
+  }
+
+  // Function to add event listeners to cart interactions
+  function addCartEventListeners() {
+    // Remove item event
+    document.querySelectorAll(".remove-item").forEach((removeButton) => {
+      removeButton.addEventListener("click", (e) => {
+        e.preventDefault();
+        const productId = e.currentTarget.dataset.id;
+        CartManager.removeFromCart(productId);
+        populateCart();
+      });
+    });
+
+    // Quantity change event
+    document.querySelectorAll(".quantity-input").forEach((quantityInput) => {
+      quantityInput.addEventListener("change", (e) => {
+        const productId = e.target.dataset.id;
+        const quantity = parseInt(e.target.value);
+        
+        // Validate quantity
+        if (quantity > 0) {
+          CartManager.updateQuantity(productId, quantity);
+          populateCart();
+        } else {
+          // If quantity is 0 or negative, reset to 1
+          e.target.value = 1;
+          CartManager.updateQuantity(productId, 1);
+          populateCart();
+        }
+      });
+    });
+
+    // Proceed to Checkout
+    const checkoutButton = document.querySelector("#subtotal button");
+    if (checkoutButton) {
+      checkoutButton.addEventListener("click", () => {
+        // Basic checkout logic
+        const cartItems = CartManager.getCartItems();
+        if (cartItems.length === 0) {
+          alert("Your cart is empty!");
+          return;
+        }
+        
+        // Redirect to checkout or show checkout modal
+        alert("Proceeding to Checkout");
+        // You can replace this with actual checkout process
+        // window.location.href = 'checkout.html';
+      });
+    }
+  }
+
+  // Initial cart population
+  populateCart();
+
+  // Apply Coupon (optional - just a placeholder)
+  const couponButton = document.querySelector("#coupon button");
+  if (couponButton) {
+    couponButton.addEventListener("click", () => {
+      alert("Coupon functionality to be implemented");
+    });
+  }
+});
+    </script>
+  </body>
+</html>

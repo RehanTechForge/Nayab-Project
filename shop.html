@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nayab - Shop</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script src="./js/products.js"></script>
+  </head>
+
+  <body>
+    <section id="header">
+      <a href="#"><img src="img/logo.png" class="logo" alt="img" /></a>
+      <div>
+        <ul id="navbar">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li id="auth-link">
+            <!-- Dynamic login/logout will be inserted here by JavaScript -->
+          </li>
+          <li id="lg-bag">
+            <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+          </li>
+          <a href="#" id="close"><i class="fa-solid fa-circle-xmark"></i></a>
+        </ul>
+      </div>
+      <div id="mobile">
+        <a href="cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        <i id="bar" class="fa-solid fa-outdent"></i>
+      </div>
+
+      <script>
+        // Check authentication status on page load
+        document.addEventListener("DOMContentLoaded", () => {
+          const authLink = document.getElementById("auth-link");
+          const token = localStorage.getItem("token");
+
+          if (token) {
+            // User is logged in - show logout
+            authLink.innerHTML = `
+                    <a href="#" id="logout-link">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                `;
+
+            // Add logout functionality
+            document
+              .getElementById("logout-link")
+              .addEventListener("click", (e) => {
+                e.preventDefault();
+                localStorage.removeItem("token");
+                window.location.href = "index.html";
+              });
+          } else {
+            // User is not logged in - show login
+            authLink.innerHTML = `
+                    <a href="login.html" class="${
+                      window.location.pathname.includes("login.html")
+                        ? "active"
+                        : ""
+                    }">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                `;
+          }
+        });
+      </script>
+    </section>
+
+    <section id="page-header">
+      <h2>#shopwithNayab</h2>
+      <p>Get the best deals & discounts!</p>
+    </section>
+
+    <!-- <section id="product1" class="section-p1">
+      <div id="pro-container" class="pro-container">
+        
+      </div>
+    </section> -->
+
+    <div class="filter-container">
+      <div class="filters">
+        <!-- Category Filter -->
+        <div class="filter-group">
+          <h3>Category</h3>
+          <select id="categoryFilter">
+            <option value="">All Categories</option>
+            <!-- Categories dynamically populate होंगी -->
+          </select>
+        </div>
+
+        <!-- Price Filter -->
+        <div class="filter-group">
+          <h3>Price Range</h3>
+          <input type="range" id="priceRange" min="0" max="5000" step="500" />
+          <span id="priceValue">Max: ₹<span id="maxPrice">5000</span></span>
+        </div>
+
+        <!-- Size Filter -->
+        <div class="filter-group">
+          <h3>Sizes</h3>
+          <div class="size-filter" id="sizeFilter">
+            <!-- Sizes dynamically populate होंगी -->
+          </div>
+        </div>
+
+        <!-- Color Filter -->
+        <div class="filter-group">
+          <h3>Colors</h3>
+          <div class="color-filter" id="colorFilter">
+            <!-- Colors dynamically populate होंगी -->
+          </div>
+        </div>
+
+        <!-- Featured/New Arrival -->
+        <div class="filter-group">
+          <label>
+            <input type="checkbox" id="featuredFilter" /> Featured
+          </label>
+          <label>
+            <input type="checkbox" id="newArrivalFilter" /> New Arrivals
+          </label>
+        </div>
+      </div>
+
+      <!-- Product Section -->
+      <section id="product1" class="section-p1">
+        <div class="search-box">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search products..."
+            class="search-input"
+          />
+          <i class="fas fa-search search-icon"></i>
+        </div>
+        <div id="pro-container" class="pro-container"></div>
+      </section>
+    </div>
+
+    <!-- <section id="pagination" class="section-p1">
+      <a href="#">1</a>
+      <a href="#">2</a>
+      <a href="#"><i class="fa-solid fa-arrow-right"></i></a>
+    </section> -->
+
+    <section id="newsletter" class="section-p1 section-m1">
+      <div class="newstext">
+        <h4>Sign up for the Newsletter</h4>
+        <p>
+          Get e-mail updates about our latest products and
+          <span>special offers.</span>
+        </p>
+      </div>
+      <div class="form">
+        <input type="text" placeholder="Your email address" />
+        <button class="normal">Sign Up</button>
+      </div>
+    </section>
+
+    <footer class="section-p1">
+      <div class="footer-content">
+        <div class="col">
+          <img src="img/logo.png" class="logo" alt="Nayab Clothing Logo" />
+          <h4>Contact</h4>
+          <p><strong>Address:</strong> Karachi, Sindh</p>
+          <p><strong>Phone:</strong> +92 300 9211627</p>
+          <p><strong>Hours:</strong> 10:00 - 22:00</p>
+          <div class="follow">
+            <h4>Follow us</h4>
+            <div class="icon">
+              <i class="fa-brands fa-facebook"></i>
+              <i class="fa-brands fa-instagram"></i>
+              <i class="fa-brands fa-x-twitter"></i>
+              <i class="fa-brands fa-pinterest"></i>
+              <i class="fa-brands fa-youtube"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <h4>About</h4>
+          <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Delivery information</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Contact us</a></li>
+          </ul>
+        </div>
+        <div class="col">
+          <h4>My Account</h4>
+          <ul>
+            <li><a href="#">Sign In</a></li>
+            <li><a href="#">View Cart</a></li>
+            <li><a href="#">My Wishlist</a></li>
+            <li><a href="#">Track My Order</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+        </div>
+        <div class="col install">
+          <h4>Install App</h4>
+          <p>From App Store or Google Play</p>
+          <div class="row">
+            <img src="img/pay/app.png" class="app-store" alt="App Store" />
+            <img src="img/pay/play.png" class="google-play" alt="Google Play" />
+          </div>
+          <p>Secured Payment Gateways</p>
+          <img
+            src="img/pay/pay.png"
+            class="payment-methods"
+            alt="Payment Methods"
+          />
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2025, Nayab Clothing - Official Website</p>
+      </div>
+    </footer>
+
+    <script src="./js/productRenderer.js"></script>
+    <script src="./js/cartManager.js"></script>
+    <!-- <script>
+      // Render all products on shop page load
+      console.log("PRO", products);
+      document.addEventListener("DOMContentLoaded", () => {
+        ProductRenderer.renderProducts("pro-container", products);
+      });
+    </script> -->
+    <script>
+      // Dynamic Filters Setup
+      function initializeFilters() {
+        // Collect unique categories
+        const categories = [...new Set(products.map((p) => p.category))];
+        const categorySelect = document.getElementById("categoryFilter");
+        categories.forEach((cat) => {
+          categorySelect.innerHTML += `<option value="${cat}">${cat}</option>`;
+        });
+
+        // Set price range dynamically
+        const maxPrice = Math.max(...products.map((p) => p.price));
+        document.getElementById("priceRange").max = maxPrice;
+        document.getElementById("maxPrice").textContent = maxPrice;
+
+        // Collect unique sizes
+        const allSizes = products.flatMap((p) => p.sizes);
+        const uniqueSizes = [...new Set(allSizes)];
+        const sizeFilter = document.getElementById("sizeFilter");
+        uniqueSizes.forEach((size) => {
+          sizeFilter.innerHTML += `
+      <div class="size-option" data-size="${size}">${size}</div>
+    `;
+        });
+
+        // Collect unique colors
+        const allColors = products.flatMap((p) => p.colors);
+        const uniqueColors = [...new Set(allColors)];
+        const colorFilter = document.getElementById("colorFilter");
+        uniqueColors.forEach((color) => {
+          colorFilter.innerHTML += `
+      <div class="color-option" 
+           style="background-color: ${color}" 
+           data-color="${color}"></div>
+    `;
+        });
+      }
+
+      // Updated Filter Logic
+      const filters = {
+        category: "",
+        maxPrice: Math.max(...products.map((p) => p.price)),
+        size: "",
+        color: "",
+        featured: false,
+        newArrival: false,
+        searchTerm: "",
+      };
+
+      // Event Listeners
+      document
+        .getElementById("categoryFilter")
+        .addEventListener("change", (e) => {
+          filters.category = e.target.value;
+          applyFilters();
+        });
+
+      document.getElementById("searchInput").addEventListener("input", (e) => {
+        filters.searchTerm = e.target.value.toLowerCase();
+        applyFilters();
+      });
+
+      document.getElementById("priceRange").addEventListener("input", (e) => {
+        filters.maxPrice = parseInt(e.target.value);
+        document.getElementById("maxPrice").textContent = filters.maxPrice;
+        applyFilters();
+      });
+
+      document.querySelectorAll(".size-option").forEach((option) => {
+        option.addEventListener("click", () => {
+          document
+            .querySelectorAll(".size-option")
+            .forEach((opt) => opt.classList.remove("selected"));
+          option.classList.add("selected");
+          filters.size = option.dataset.size;
+          applyFilters();
+        });
+      });
+
+      document.querySelectorAll(".color-option").forEach((option) => {
+        option.addEventListener("click", () => {
+          document
+            .querySelectorAll(".color-option")
+            .forEach((opt) => opt.classList.remove("selected"));
+          option.classList.add("selected");
+          filters.color = option.dataset.color;
+          applyFilters();
+        });
+      });
+
+      document
+        .getElementById("featuredFilter")
+        .addEventListener("change", (e) => {
+          filters.featured = e.target.checked;
+          applyFilters();
+        });
+
+      document
+        .getElementById("newArrivalFilter")
+        .addEventListener("change", (e) => {
+          filters.newArrival = e.target.checked;
+          applyFilters();
+        });
+
+      // Updated Filter Function
+      function applyFilters() {
+        const filtered = products.filter((product) => {
+          const searchMatch = product.name
+            .toLowerCase()
+            .includes(filters.searchTerm);
+          const categoryMatch =
+            !filters.category || product.category === filters.category;
+          const priceMatch = product.price <= filters.maxPrice;
+          const sizeMatch =
+            !filters.size || product.sizes.includes(filters.size);
+          const colorMatch =
+            !filters.color || product.colors.includes(filters.color);
+          const featuredMatch = !filters.featured || product.featured;
+          const newArrivalMatch = !filters.newArrival || product.newArrival;
+
+          return (
+            searchMatch &&
+            categoryMatch &&
+            priceMatch &&
+            sizeMatch &&
+            colorMatch &&
+            featuredMatch &&
+            newArrivalMatch
+          );
+        });
+
+        ProductRenderer.renderProducts("pro-container", filtered);
+      }
+
+      // Initial Setup
+      document.addEventListener("DOMContentLoaded", () => {
+        initializeFilters();
+        applyFilters();
+      });
+      // Navigation Active Class Handler
+      function setActiveNav() {
+        const currentPath = window.location.pathname.split("/").pop();
+        const navLinks = document.querySelectorAll("#navbar a");
+
+        navLinks.forEach((link) => {
+          const linkPath = link.getAttribute("href").split("/").pop();
+          if (currentPath === linkPath) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      }
+
+      // Updated Authentication Checker
+      document.addEventListener("DOMContentLoaded", () => {
+        const authLink = document.getElementById("auth-link");
+        const token = localStorage.getItem("token");
+
+        // Set active class for all navigation links
+        setActiveNav();
+
+        if (token) {
+          authLink.innerHTML = `
+      <a href="#" id="logout-link">
+          <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+    `;
+
+          document
+            .getElementById("logout-link")
+            ?.addEventListener("click", (e) => {
+              e.preventDefault();
+              localStorage.removeItem("token");
+              window.location.href = "index.html";
+            });
+        } else {
+          authLink.innerHTML = `
+      <a href="login.html" class="${
+        window.location.pathname.includes("login.html") ? "active" : ""
+      }">
+          <i class="fas fa-sign-in-alt"></i> Login
+      </a>
+    `;
+        }
+      });
+
+      // Add event listener for navigation clicks
+      document.querySelectorAll("#navbar a").forEach((link) => {
+        link.addEventListener("click", function () {
+          document
+            .querySelectorAll("#navbar a")
+            .forEach((l) => l.classList.remove("active"));
+          this.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>
