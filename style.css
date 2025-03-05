@@ -121,7 +121,7 @@ body{
 }
 
 #hero {
-    background-image: url("img/hero.png");
+    background-image: url("img/banner/hero.png");
     height: 90vh;
     width: 100%;
     background-color: black;
@@ -360,7 +360,7 @@ body{
 }
 
 #hero {
-    background-image: url("img/hero.png");
+    background-image: url("img/banner/hero.png");
     height: 90vh;
     width: 100%;
     background-color: black;
